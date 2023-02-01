@@ -46,8 +46,7 @@ class ListContactItem extends StatelessWidget {
           Column(
             children: [
               TextButton(
-                // TODO: Uncomment code di bawah untuk menambahkan key pada button edit.
-                // key: Key('btn-edit-$index'),
+                key: Key('btn-edit-$index'),
                 onPressed: () {
                   onEdit();
                 },
@@ -58,7 +57,7 @@ class ListContactItem extends StatelessWidget {
                 ),
               ),
               TextButton(
-                // TODO: Tambahkan property [key] pada widget ini dengan value 'btn-delete-$index'
+                key: Key('btn-delete-$index'),
                 onPressed: () {
                   onDelete();
                 },
