@@ -19,15 +19,14 @@ class BaseService extends GetConnect {
     return data;
   }
 
-  // TODO: Uncomment code di bawah untuk melakukan PUT api request
-  // Future<Response<dynamic>> putRequest({required String url, required dynamic body}) async {
-  //   debugPrint('PATCH Request: ${httpClient.baseUrl}$url');
-  //   final data = await put(url, body);
-  //   debugPrint('Body: $body');
-  //   debugPrint('Response: ${data.body}');
-  //
-  //   return data;
-  // }
+  Future<Response<dynamic>> putRequest({required String url, required dynamic body}) async {
+    debugPrint('PATCH Request: ${httpClient.baseUrl}$url');
+    final data = await put(url, body);
+    debugPrint('Body: $body');
+    debugPrint('Response: ${data.body}');
+  
+    return data;
+  }
 
   Future<Response<dynamic>> deleteRequest({required String url}) async {
     debugPrint('DELETE Request: ${httpClient.baseUrl}$url');

@@ -7,10 +7,8 @@ import 'package:get/get.dart';
 abstract class ContactRepository {
   Future<Either<String, List<ContactItem>>> getContact();
   Future<Either<String, ContactItem>> createContact(dynamic body);
-  // TODO: Uncomment code di bawah untuk menambahkan method [editContact]
-  // Future<Either<String, ContactItem>> editContact(dynamic body, ContactItem contact);
-  // TODO: Uncomment code di bawah untuk menambahkan method [deleteContact]
-  // Future<Either<String, bool>> deleteContact(ContactItem contact);
+  Future<Either<String, ContactItem>> editContact(dynamic body, ContactItem contact);
+  Future<Either<String, bool>> deleteContact(ContactItem contact);
 }
 
 class ContactRepositoryImpl extends ContactRepository {
@@ -43,29 +41,27 @@ class ContactRepositoryImpl extends ContactRepository {
     }
   }
 
-  // TODO: Uncomment code di bawah ini untuk implementasi method [deleteContact]
-  // @override
-  // Future<Either<String, bool>> deleteContact(ContactItem contact) async {
-  //   final response = await baseService.deleteRequest(url: '/contacts/${contact.id}');
-  //
-  //   if (response.isOk) {
-  //     return const Right(true);
-  //   } else {
-  //     return Left(response.body['message']);
-  //   }
-  // }
+  @override
+  Future<Either<String, bool>> deleteContact(ContactItem contact) async {
+    final response = await baseService.deleteRequest(url: '/contacts/${contact.id}');
+  
+    if (response.isOk) {
+      return const Right(true);
+    } else {
+      return Left(response.body['message']);
+    }
+  }
 
-  // TODO: Uncomment code di bawah untuk implementasi method [editContact]
-  // @override
-  // Future<Either<String, ContactItem>> editContact(dynamic body, ContactItem contact) async {
-  //   final response = await baseService.putRequest(url: '/contacts/${contact.id}', body: body);
-  //
-  //   if (response.isOk) {
-  //     final data = CreateContactModel.fromJson(response.body);
-  //
-  //     return data.data != null ? Right(data.data!) : const Left('Gagal membuat contact');
-  //   } else {
-  //     return Left('${response.body['message'] ?? ''}');
-  //   }
-  // }
+  @override
+  Future<Either<String, ContactItem>> editContact(dynamic body, ContactItem contact) async {
+    final response = await baseService.putRequest(url: '/contacts/${contact.id}', body: body);
+  
+    if (response.isOk) {
+      final data = CreateContactModel.fromJson(response.body);
+  
+      return data.data != null ? Right(data.data!) : const Left('Gagal membuat contact');
+    } else {
+      return Left('${response.body['message'] ?? ''}');
+    }
+  }
 }
