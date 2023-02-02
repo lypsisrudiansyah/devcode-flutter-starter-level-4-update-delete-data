@@ -102,8 +102,8 @@ class RetrieveDataController extends GetxController {
     
     data.fold((l) {}, (r) {
       contacts.removeWhere((element) => element.id == contact.id);
-      showDeleteDialog();
       contacts.refresh();
+      showDeleteDialog();
     });
   }
   
